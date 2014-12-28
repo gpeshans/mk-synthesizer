@@ -275,7 +275,7 @@ module.exports = function (grunt) {
         },
         reporters: ['progress', 'junit', 'coverage'],
         // don't include all spec files in coverage
-        preprocessors: { 'src/!(*.spec)+(.js)': 'coverage' }
+        preprocessors: { 'src/**/!(*spec).js': 'coverage' }
       }
     },
 
