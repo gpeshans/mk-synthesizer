@@ -1,0 +1,17 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+*.iml
+.idea
+
+# Maven
+log/
+target/
+LICENSE.txt
+
+# JSBuild
+node_modules/
+mk-synthesizer-ui-frontend/karma-unit.js
