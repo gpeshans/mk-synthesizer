@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>mk-synthesizer</artifactId>
+        <groupId>mk.ukim.finki.mk-synthesizer</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mk-synthesizer-ui-frontend</artifactId>
+    <packaging>war</packaging>
+
+    <name>mk-synthesizer | ui frontend</name>
+    <description>mk-synthesizer ui frontend - Frontend implementations of mk-synthesizer based on AngularJS</description>
+
+    <build>
+    <sourceDirectory>src</sourceDirectory>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <versionRange>[1.2,)</versionRange>
+                    <goals>
+                      <goal>exec</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webResources>
+            <resource>
+              <directory>target/dist</directory>
+            </resource>
+          </webResources>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+          <filesets>
+            <!-- Bower components are now committed in the git repository -->
+            <!--<fileset>-->
+              <!--<directory>components</directory>-->
+              <!--<includes>-->
+                <!--<include>**/*</include>-->
+              <!--</includes>-->
+              <!--<followSymlinks>false</followSymlinks>-->
+            <!--</fileset>-->
+            <!-- It would be better to also delete node_modules, but it just takes too long
+                 to download all packages for every build.
+            <fileset>
+              <directory>node_modules</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset> -->
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.kuali.maven.plugins</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>update-thirdparty</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bower-install</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <!-- Overriding nca-parent pom's definition for bower install call -->
+            <!-- Developer calls bower install manually and the needed files are always committed in the code repository -->
+            <configuration combine.self="override">
+              <executable>bower</executable>
+              <commandlineArgs>-v</commandlineArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

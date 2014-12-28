@@ -1,0 +1,6 @@
+{
+  "baseUrl": "/",
+  "restBaseUrl": "/rest/",
+  "version": "dev-snapshot",
+  "buildTimestamp": "a few seconds ago"
+}

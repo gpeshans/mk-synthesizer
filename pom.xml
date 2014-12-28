@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mk.ukim.finki.mk-synthesizer</groupId>
+    <artifactId>mk-synthesizer</artifactId>
+    <packaging>pom</packaging>
+
+    <name>mk-synthesizer</name>
+    <version>1.0-SNAPSHOT</version>
+    <description>Parent POM for all synthesizer modules</description>
+    <inceptionYear>2014</inceptionYear>
+
+    <modules>
+        <module>mk-synthesizer-ui-backend</module>
+        <module>mk-synthesizer-ui-frontend</module>
+        <module>mk-synthesizer-ui</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+              <groupId>mk.ukim.finki.mk-synthesizer</groupId>
+              <artifactId>mk-synthesizer-ui-backend</artifactId>
+              <type>war</type>
+              <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+              <groupId>mk.ukim.finki.mk-synthesizer</groupId>
+              <artifactId>mk-synthesizer-ui-frontend</artifactId>
+              <type>war</type>
+              <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                <!-- Needed because we don't have a web.xml in the frontend module. -->
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+    </build>
+
+    <properties>
+        <project.id>mk-synthesizer</project.id>
+    </properties>
+
+    <profiles>
+        <!-- BEGIN JavaScript support -->
+        <!-- Profile to run npm install if package.json file exists -->
+        <profile>
+            <id>npm-install</id>
+            <activation>
+              <file>
+                <exists>package.json</exists>
+              </file>
+            </activation>
+            <properties>
+              <!-- Default npm install arguments (none) -->
+              <npm.install.arguments />
+            </properties>
+            <build>
+              <plugins>
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>npm-install</id>
+                      <phase>compile</phase>
+                      <goals>
+                        <goal>exec</goal>
+                      </goals>
+                      <configuration>
+                        <executable>npm</executable>
+                        <commandlineArgs>--color=false install ${npm.install.arguments}</commandlineArgs>
+                      </configuration>
+                    </execution>
+                  </executions>
+                </plugin>
+              </plugins>
+            </build>
+        </profile>
+        <!-- Profile to run bower install if bower.json file exists -->
+        <profile>
+            <id>bower-install</id>
+            <activation>
+              <file>
+                <exists>bower.json</exists>
+              </file>
+            </activation>
+            <properties>
+              <!-- Default bower install arguments (none) -->
+              <bower.install.arguments />
+            </properties>
+            <build>
+              <plugins>
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>bower-install</id>
+                      <phase>compile</phase>
+                      <goals>
+                        <goal>exec</goal>
+                      </goals>
+                      <configuration>
+                        <executable>bower</executable>
+                        <commandlineArgs>--no-color install ${bower.install.arguments}</commandlineArgs>
+                      </configuration>
+                    </execution>
+                  </executions>
+                </plugin>
+              </plugins>
+            </build>
+        </profile>
+        <!-- Profile to run grunt if Gruntfile.js file exists (with jsdoc support and Sonar configuration for JavaScript projects) -->
+        <profile>
+            <id>grunt</id>
+            <activation>
+              <file>
+                <exists>Gruntfile.js</exists>
+              </file>
+            </activation>
+            <build>
+              <plugins>
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>grunt-default</id>
+                      <phase>compile</phase>
+                      <goals>
+                        <goal>exec</goal>
+                      </goals>
+                      <configuration>
+                        <executable>grunt</executable>
+                        <commandlineArgs>--no-color</commandlineArgs>
+                      </configuration>
+                    </execution>
+                    <execution>
+                      <id>grunt-jsdoc</id>
+                      <phase>site</phase>
+                      <goals>
+                        <goal>exec</goal>
+                      </goals>
+                      <configuration>
+                        <executable>grunt</executable>
+                        <arguments>
+                          <argument>--no-color doc</argument>
+                        </arguments>
+                      </configuration>
+                    </execution>
+                  </executions>
+                </plugin>
+              </plugins>
+            </build>
+        </profile>
+        <!-- Profile for webfrontend packaging (war) -->
+        <profile>
+            <id>webfrontend</id>
+            <activation>
+              <file>
+                <exists>src/main/webfrontend</exists>
+              </file>
+            </activation>
+            <build>
+              <plugins>
+                <plugin>
+                  <artifactId>maven-war-plugin</artifactId>
+                  <configuration>
+                    <webResources>
+                      <resource>
+                        <directory>target/dist</directory>
+                      </resource>
+                    </webResources>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                  </configuration>
+                </plugin>
+              </plugins>
+            </build>
+        </profile>
+        <!-- END JavaScript support -->
+    </profiles>
+
+</project>

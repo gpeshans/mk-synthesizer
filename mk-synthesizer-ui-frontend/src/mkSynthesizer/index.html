@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=1440, initial-scale=1">
+
+  <title>MK-SYNTHESIZER</title>
+
+  <% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+</head>
+
+<body>
+
+  <noscript>
+    <div>
+      Either you have JavaScript disabled or your browser does not support JavaScript.<br>
+      To work properly, this page requires JavaScript to be enabled.
+    </div>
+  </noscript>
+
+  <div ui-view></div>
+
+  <% scripts.forEach( function ( file ) { %>
+  <script src="<%= file %>"></script><% }); %>
+
+</body>
+
+</html>
