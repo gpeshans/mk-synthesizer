@@ -1,3 +1,7 @@
 language: java
 
+before_script:
+  - 'npm install -g bower grunt-cli karma'
+  - 'bower install'
+
 script: mvn clean install
