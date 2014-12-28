@@ -96,9 +96,7 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Overriding nca-parent pom's definition for bower install call -->
-      <!-- Developer calls bower install manually and the needed files are always committed in the code repository -->
-      <!-- <plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
@@ -108,13 +106,15 @@
             <goals>
               <goal>exec</goal>
             </goals>
+            <!-- Overriding nca-parent pom's definition for bower install call -->
+            <!-- Developer calls bower install manually and the needed files are always committed in the code repository -->
             <configuration combine.self="override">
               <executable>bower</executable>
               <commandlineArgs>-v</commandlineArgs>
             </configuration>
           </execution>
         </executions>
-      </plugin> -->
+      </plugin>
     </plugins>
   </build>
 </project>
