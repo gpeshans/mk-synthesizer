@@ -1,21 +1,31 @@
-<div class="row">
-  <div class="col-sm-4 col-sm-offset-4" role="main">
-    <h1 class="page-header">Welcome Home!</h1>
-    <div class="bs-example">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Example</h3>
-          </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <input class="form-conrol" type="text" ng-model="test">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <h1 class="page-header">Welcome Home!</h1>
+
+            <div class="bs-example">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Example</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input class="form-conrol" type="text" ng-model="test">
+                        </div>
+                        <pre>{{test}}</pre>
+                        <button type="button" class="btn btn-lg btn-default" ng-click="resetModel()">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh model
+                        </button>
+                        <button type="button" class="btn btn-lg btn-default" ng-click="testPost()">
+                            Pej
+                        </button>
+
+                        <audio controls>
+                            <source ng-src="http://localhost:9000/rest/resources/wav/temp.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
             </div>
-      	    <pre>{{test}}</pre>
-      	    <button class="btn btn-default" ng-click="resetModel()">
-                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh model
-            </button>
-          </div>
         </div>
     </div>
-  </div>
 </div>

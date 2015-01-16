@@ -12,9 +12,17 @@ angular.module('mkSynthesizer.view.synthesizer')
     });
   })
 
-  .controller('HomeController', function ($scope) {
+  .controller('HomeController', function ($scope, testService) {
     $scope.test = 'mkSynthesizer';
     $scope.resetModel = function () {
       $scope.test = '';
+    };
+
+    $scope.testPost = function () {
+      testService.testSynthesizePOST().then(function (path) {
+        $scope.file = {
+          path: 'http://localhost:9000/rest/resources/wav/temp.wav'
+        };
+      });
     };
   });
