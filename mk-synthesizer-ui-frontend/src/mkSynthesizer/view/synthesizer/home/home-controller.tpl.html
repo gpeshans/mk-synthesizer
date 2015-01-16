@@ -1,31 +1,55 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-            <h1 class="page-header">Welcome Home!</h1>
+      <div class="col-sm-4 col-sm-offset-4">
+        
+        <h1 class="page-header">
+          Welcome Home! 
+        </h1>
+        
+        <img src="http://en.academic.ru/pictures/enwiki/70/Flag-map_of_FYR_Macedonia.svg" class="flag-icon">    
 
-            <div class="bs-example">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Example</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <input class="form-conrol" type="text" ng-model="test">
-                        </div>
-                        <pre>{{test}}</pre>
-                        <button type="button" class="btn btn-lg btn-default" ng-click="resetModel()">
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh model
-                        </button>
-                        <button type="button" class="btn btn-lg btn-default" ng-click="testPost()">
-                            Pej
-                        </button>
-
-                        <audio controls>
-                            <source ng-src="http://localhost:9000/rest/resources/wav/temp.wav" type="audio/wav">
-                        </audio>
-                    </div>
-                </div>
+        <div class="bs-example">
+          <label for="voice-dropdown">Voice</label>
+          <div id="voice-dropdown" class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              <span class="glyphicon glyphicon-user"></span>
+              Dropdown
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+          </div>
+          
+          <button type="button" class="btn btn-default btn-xs  btn-contact">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contact us
+          </button>
+          
+          <label for="input-text-field">Text</label>
+          <textarea id="input-text-field" class="form-control" rows="20" placeHolder="Enter text ..."></textarea>
+          
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-md-2 ">
+                <button type="button" class="btn btn-sm btn-speak btn-default" ng-click="testPost()" value="Pej">
+                <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Speak</button>
+              </div>
+              <div class="col-xs-6 col-md-8">
+                <audio controls class="synhtesizer-audio">
+                  <source ng-src="http://localhost:9000/rest/resources/wav/example.wav" type="audio/wav">
+                </audio>
+              </div>
+              <div class="col-xs-6 col-md-2">
+                <button type="button" class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Download
+                </button>
+              </div>
             </div>
+          </div>
+        </div>
         </div>
     </div>
 </div>
