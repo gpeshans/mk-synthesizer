@@ -8,21 +8,26 @@ angular.module('mkSynthesizer.view.synthesizer')
     $stateProvider.state(MK_SYNTHESIZER_STATES.SYNTHESIZER_HOME, {
       url: '/home',
       templateUrl: 'mkSynthesizer/view/synthesizer/home/home-controller.tpl.html',
-      controller: 'HomeController'
+      controller: 'HomeController',
+      resolve: {
+        voices: function (maryttsService) {
+          return maryttsService.getVoices();
+        }
+      }
     });
   })
 
-  .controller('HomeController', function ($scope, testService) {
-    $scope.test = 'mkSynthesizer';
-    $scope.resetModel = function () {
-      $scope.test = '';
-    };
+  .controller('HomeController', function ($scope, synthesizerService, voices, $sce) {
+    $scope.voices = voices;
 
-    $scope.testPost = function () {
-      testService.testSynthesizePOST().then(function (path) {
-        $scope.file = {
-          path: 'http://localhost:9000/rest/resources/wav/temp.wav'
-        };
-      });
+    $scope.synthesizeText = function () {
+      synthesizerService.synthesizeText($scope.inputText, $scope.selectedVoice).then(function (path) {
+          $scope.file = {
+            path: $sce.trustAsResourceUrl(path)
+          };
+        }
+      )
+      ;
     };
-  });
+  })
+;

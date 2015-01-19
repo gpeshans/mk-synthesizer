@@ -3,7 +3,7 @@
 describe('HomeController', function () {
 
   var $controller, $scope;
-  var testService;
+  var synthesizerService;
   var createController;
 
   beforeEach(function () {
@@ -11,38 +11,27 @@ describe('HomeController', function () {
     module('mkSynthesizer.service.synthesizer');
   });
 
-  beforeEach(inject(function (_$controller_, _$rootScope_, _testService_) {
+  beforeEach(inject(function (_$controller_, _$rootScope_, _synthesizerService_) {
     $controller = _$controller_;
     $scope = _$rootScope_.$new();
-    testService = _testService_;
+    synthesizerService = _synthesizerService_;
   }));
 
   beforeEach(function () {
     createController = function () {
       return $controller('HomeController', {
         $scope: $scope,
-        testService: testService
+        synthesizerService: synthesizerService,
+        voices: []
       });
     };
   });
 
   it('should initialize controller', function () {
     // given & when
-    createController();
+    // TODO: write tests
 
     // then
-    expect($scope.test).toBe('mkSynthesizer');
-  });
-
-  it('should reset the test model', function () {
-    // given
-    createController();
-
-    // when
-    $scope.resetModel();
-
-    // then
-    expect($scope.test).toBe('');
   });
 
 });

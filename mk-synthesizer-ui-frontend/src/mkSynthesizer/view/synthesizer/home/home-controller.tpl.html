@@ -1,55 +1,66 @@
 <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-4 col-sm-offset-4">
-        
-        <h1 class="page-header">
-          Welcome Home! 
-        </h1>
-        
-        <img src="http://en.academic.ru/pictures/enwiki/70/Flag-map_of_FYR_Macedonia.svg" class="flag-icon">    
+        <div class="col-sm-4 col-sm-offset-4">
 
-        <div class="bs-example">
-          <label for="voice-dropdown">Voice</label>
-          <div id="voice-dropdown" class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-              <span class="glyphicon glyphicon-user"></span>
-              Dropdown
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-            </ul>
-          </div>
-          
-          <button type="button" class="btn btn-default btn-xs  btn-contact">
-            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contact us
-          </button>
-          
-          <label for="input-text-field">Text</label>
-          <textarea id="input-text-field" class="form-control" rows="20" placeHolder="Enter text ..."></textarea>
-          
-          <div class="container-fluid">
             <div class="row">
-              <div class="col-xs-12 col-md-2 ">
-                <button type="button" class="btn btn-sm btn-speak btn-default" ng-click="testPost()" value="Pej">
-                <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Speak</button>
-              </div>
-              <div class="col-xs-6 col-md-8">
-                <audio controls class="synhtesizer-audio">
-                  <source ng-src="http://localhost:9000/rest/resources/wav/example.wav" type="audio/wav">
-                </audio>
-              </div>
-              <div class="col-xs-6 col-md-2">
-                <button type="button" class="btn btn-default btn-xs">
-                  <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Download
-                </button>
-              </div>
+                <h1 class="page-header">
+                    Welcome Home!
+                </h1>
             </div>
-          </div>
-        </div>
+
+            <div class="row">
+                <label for="voice-dropdown">Voice</label>
+            </div>
+
+            <div class="row">
+                <select ng-model="selectedVoice"
+                        id="voice-dropdown"
+                        class="input input-sm">
+                    <option value="">-- select voice --</option>
+                    <option value="{{voice}}" ng-repeat="voice in voices">{{voice}}</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="input-text-field">Text</label>
+            </div>
+            <div class="row">
+                <textarea id="input-text-field"
+                          class="form-control"
+                          rows="20"
+                          placeHolder="Enter text ..."
+                          ng-model="inputText">
+                </textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-sm btn-speak btn-default" ng-click="synthesizeText()">
+                        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Synthesize
+                    </button>
+                </div>
+                <div class="col-sm-9">
+                    <audio controls class="synhtesizer-audio" ng-src="{{file.path}}" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="download-button">Download recording:</label>
+                </div>
+                <div class="col-sm-7">
+                    <a class="btn btn-default"
+                       id="download-button"
+                       href="{{file.path}}"
+                       target="_self"
+                       ng-disabled="file.path == undefined"
+                       download="recording.wav">
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

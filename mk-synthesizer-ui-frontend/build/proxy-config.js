@@ -13,6 +13,11 @@ module.exports = function (grunt) {
           context: ['/rest'],
           host: 'localhost',
           port: 8080
+        },
+        {
+          context: ['/voices'],
+          host: 'localhost',
+          port: 59125
         }
       ];
     } else {
