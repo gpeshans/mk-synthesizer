@@ -107,7 +107,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        hostname: '127.0.0.1'
+        hostname: 'localhost'
       },
       livereload_mkSynthesizer: {
         options: {

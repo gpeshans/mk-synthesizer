@@ -1,7 +1,11 @@
 'use strict';
 
-angular.module('mkSynthesizer.service.synthesizer')
+angular.module('mkSynthesizer.service')
+
   .factory('synthesizerService', function ($http) {
+
+    var REST_BASE_URL = '/rest';
+    var SYNTHESIZE_ENDPOINT = '/synthesizer/synthesize';
 
     var synthesizeText = function (inputText, selectedVoice) {
       var params = {
@@ -9,11 +13,12 @@ angular.module('mkSynthesizer.service.synthesizer')
         selectedVoice: selectedVoice,
         inputType: 'TEXT'
       };
-      return $http.post('/rest/synthesizer/synthesize', {}, {
+      return $http.post(REST_BASE_URL + SYNTHESIZE_ENDPOINT, {}, {
           params: params
         }
-      ).then(function () {
-          return '/rest/resources/wav/temp.wav';
+      ).then(function (response) {
+          var recordingLocation = response.data;
+          return REST_BASE_URL + recordingLocation;
         });
     };
 

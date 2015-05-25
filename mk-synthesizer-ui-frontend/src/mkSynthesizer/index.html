@@ -16,14 +16,14 @@
 
 <body class="synthesizer-bg">
 
+  <div ui-view></div>
+
   <noscript>
     <div>
       Either you have JavaScript disabled or your browser does not support JavaScript.<br>
       To work properly, this page requires JavaScript to be enabled.
     </div>
   </noscript>
-
-  <div ui-view></div>
 
   <% scripts.forEach( function ( file ) { %>
   <script src="<%= file %>"></script><% }); %>

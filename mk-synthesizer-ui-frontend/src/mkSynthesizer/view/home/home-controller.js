@@ -1,13 +1,13 @@
 'use strict';
-angular.module('mkSynthesizer.view.synthesizer')
+angular.module('mkSynthesizer.view')
 
 /**
  * Configures the route for the valuations overview.
  */
   .config(function ($stateProvider, MK_SYNTHESIZER_STATES) {
-    $stateProvider.state(MK_SYNTHESIZER_STATES.SYNTHESIZER_HOME, {
+    $stateProvider.state(MK_SYNTHESIZER_STATES.HOME, {
       url: '/home',
-      templateUrl: 'mkSynthesizer/view/synthesizer/home/home-controller.tpl.html',
+      templateUrl: 'mkSynthesizer/view/home/home-controller.tpl.html',
       controller: 'HomeController',
       resolve: {
         voices: function (maryttsService) {

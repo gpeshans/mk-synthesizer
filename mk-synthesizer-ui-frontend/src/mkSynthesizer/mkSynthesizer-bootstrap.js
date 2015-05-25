@@ -6,7 +6,7 @@ window.deferredBootstrapper.bootstrap({
   resolve: {
     CONTEXT:  /* @ngInject */ function ($q) {
       var deferred = $q.defer();
-      deferred.resolve('test');
+      deferred.resolve();
       return deferred.promise;
     }
   }

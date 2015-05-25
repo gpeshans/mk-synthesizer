@@ -6,35 +6,18 @@
 module.exports = function (grunt) {
 
   var getProxyConfig = function () {
-    var backend = grunt.option('backend') || 'local';
-    if (backend === 'local') {
-      return [
-        {
-          context: ['/rest'],
-          host: 'localhost',
-          port: 8080
-        },
-        {
-          context: ['/voices'],
-          host: 'localhost',
-          port: 59125
-        }
-      ];
-    } else {
-      // server proxy config
-      return [
-        {
-          context: ['/rest'],
-          host: '??some-host.com??',
-          port: 443,
-          https: true,
-          changeOrigin: true,
-          rewrite: {
-            '^/rest': '/server-context/rest'
-          }
-        }
-      ];
-    }
+    return [
+      {
+        context: ['/rest'],
+        host: 'localhost',
+        port: 8080
+      },
+      {
+        context: ['/voices'],
+        host: 'localhost',
+        port: 59125
+      }
+    ];
   };
 
   var configureMiddlewares = function (connect, options) {

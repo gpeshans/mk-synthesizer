@@ -5,7 +5,7 @@ angular.module('mkSynthesizer', [
   'mkSynthesizer.templates',
   'mkSynthesizer.common',
   'mkSynthesizer.view',
-  'mkSynthesizer.service.synthesizer',
+  'mkSynthesizer.service',
   'ngCookies',
   'pascalprecht.translate'
 ]);

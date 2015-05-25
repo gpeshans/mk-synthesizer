@@ -20,13 +20,13 @@ import java.io.IOException;
  * SynthesizeController
  */
 @Controller
-@RequestMapping(value = "/synthesizer")
+@RequestMapping(value = "/synthesizer", produces = "text/plain")
 public class SynthesizeController {
 
   protected final Log logger = LogFactory.getLog(getClass());
 
   @Autowired
-  MaryClientAudioService maryClientAudioService;
+  private MaryClientAudioService maryClientAudioService;
 
   @RequestMapping(value = "/synthesize", method = RequestMethod.POST)
   @ResponseBody
@@ -39,9 +39,9 @@ public class SynthesizeController {
     ServletContext servletContext = session.getServletContext();
     String contextPath = servletContext.getRealPath("");
 
-    maryClientAudioService.streamAudio(contextPath, inputText, inputType, selectedVoice);
-    logger.debug("Recording synthesized. ---Dummy log statement---");
+    String fileLocation = maryClientAudioService.synthesizeAudio(contextPath, inputText, inputType, selectedVoice);
+    logger.debug("Recording synthesized.");
 
-    return "";
+    return fileLocation;
   }
 }

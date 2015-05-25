@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('mkSynthesizer.service.synthesizer')
+angular.module('mkSynthesizer.service')
   .factory('maryttsService', function ($http) {
 
+    var VOICES_ENDPOINT = '/voices';
+
     var getVoices = function () {
-      return $http.get('/voices').then(function (voices) {
+      return $http.get(VOICES_ENDPOINT).then(function (voices) {
         var voicesData = voices.data.split('\n');
         var voiceNames = [];
         angular.forEach(voicesData, function (voiceData) {

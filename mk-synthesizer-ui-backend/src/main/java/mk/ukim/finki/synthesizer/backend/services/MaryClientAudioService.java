@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 @Service
 public class MaryClientAudioService {
 
-  private static final String TEMPORARY_WAV_LOCATION = "/resources/wav/temp.wav";
+  private static final String TEMPORARY_WAV_LOCATION = "/resources/wav/";
 
   @Autowired
   MaryClientProcessorService maryClientProcessorService;
 
-  public void streamAudio(String contextPath, String inputText, String inputType, String selectedVoice) {
+  public String synthesizeAudio(String contextPath, String inputText, String inputType, String selectedVoice) {
+
+    String fileLocation = TEMPORARY_WAV_LOCATION + UUID.randomUUID().toString() + ".wav";
+    String filePath = contextPath + fileLocation;
 
     try {
 
@@ -28,11 +32,13 @@ public class MaryClientAudioService {
         throw new MaryttsServerException("Marytts server not started.");
       }
 
-      File outputTempFile = new File(contextPath + TEMPORARY_WAV_LOCATION);
+      File outputTempFile = new File(filePath);
       FileUtils.writeByteArrayToFile(outputTempFile, IOUtils.toByteArray(inputStream));
 
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    return fileLocation;
   }
 }
