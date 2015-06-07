@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-form="form.synthesizerForm">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
 
@@ -15,7 +15,9 @@
             <div class="row">
                 <select ng-model="selectedVoice"
                         id="voice-dropdown"
-                        class="input input-sm">
+                        class="input input-sm"
+                        ng-required="true"
+                        name="selectedVoice">
                     <option value="">-- select voice --</option>
                     <option value="{{voice}}" ng-repeat="voice in voices">{{voice}}</option>
                 </select>
@@ -29,13 +31,17 @@
                           class="form-control"
                           rows="20"
                           placeHolder="Enter text ..."
-                          ng-model="inputText">
+                          ng-model="inputText"
+                        ng-required="true">
                 </textarea>
             </div>
 
             <div class="row">
                 <div class="col-sm-3">
-                    <button type="button" class="btn btn-sm btn-speak btn-default" ng-click="synthesizeText()">
+                    <button type="button"
+                            class="btn btn-sm btn-speak btn-default"
+                            ng-click="synthesizeText()"
+                            ng-disabled="form.synthesizerForm.$invalid">
                         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Synthesize
                     </button>
                 </div>

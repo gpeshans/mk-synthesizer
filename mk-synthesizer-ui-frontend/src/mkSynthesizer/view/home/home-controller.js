@@ -18,6 +18,7 @@ angular.module('mkSynthesizer.view')
   })
 
   .controller('HomeController', function ($scope, synthesizerService, voices, $sce) {
+    $scope.form = {};
     $scope.voices = voices;
 
     $scope.synthesizeText = function () {

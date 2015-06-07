@@ -1,6 +1,7 @@
 package mk.ukim.finki.synthesizer.backend.services;
 
 import mk.ukim.finki.synthesizer.backend.exceptions.MaryttsServerException;
+import mk.ukim.finki.synthesizer.backend.model.SynthesizerData;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class MaryClientAudioService {
   @Autowired
   MaryClientProcessorService maryClientProcessorService;
 
-  public String synthesizeAudio(String contextPath, String inputText, String inputType, String selectedVoice) {
+  public String synthesizeAudio(String contextPath, SynthesizerData synthesizerData) {
 
     String fileLocation = TEMPORARY_WAV_LOCATION + UUID.randomUUID().toString() + ".wav";
     String filePath = contextPath + fileLocation;
 
     try {
-
-      InputStream inputStream = maryClientProcessorService.processInput(inputText, inputType, selectedVoice);
+      InputStream inputStream = maryClientProcessorService.processInput(synthesizerData.getInputText(),
+              synthesizerData.getInputType(), synthesizerData.getSelectedVoice());
 
       if (inputStream == null) {
         throw new MaryttsServerException("Marytts server not started.");

@@ -17,8 +17,7 @@ describe('maryttsService', function () {
   }));
 
   beforeEach(function () {
-    voicesResponseData = 'cmu-slt-hsmm en_US female hmm\n' +
-                         'mk_voice mk male hmm ';
+    voicesResponseData = ['cmu-slt-hsmm', 'mk_voice'];
   });
 
   var flushAndApply = function () {
@@ -33,7 +32,7 @@ describe('maryttsService', function () {
 
   it('should get the available voices', function () {
     // given
-    $httpBackend.expect('GET', '/voices').respond(200, voicesResponseData);
+    $httpBackend.expect('GET', '/rest/synthesizer/voices').respond(200, voicesResponseData);
 
     // when
     maryttsService.getVoices().then(function (data) {

@@ -16,6 +16,12 @@
     <description>mk-synthesizer ui backend - Offers rest interfaces to the ui client, calls the appropriate services
     </description>
 
+    <properties>
+        <spring.version>4.1.6.RELEASE</spring.version>
+        <jackson.version>2.5.2</jackson.version>
+        <marytts.version>5.2</marytts.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -27,43 +33,43 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
@@ -75,7 +81,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.0.8.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
@@ -91,9 +97,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -115,9 +127,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.4.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts-common</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/marytts-common-5.2-SNAPSHOT.jar</systemPath>
         </dependency>
@@ -125,7 +143,7 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts-signalproc</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/marytts-signalproc-5.2-SNAPSHOT.jar</systemPath>
         </dependency>
@@ -133,7 +151,7 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts-client</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/marytts-client-5.2-SNAPSHOT.jar</systemPath>
         </dependency>
@@ -141,7 +159,7 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts-runtime</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/marytts-runtime-5.2-SNAPSHOT.jar</systemPath>
         </dependency>
@@ -149,7 +167,7 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>voice-cmu-slt-hsmm</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/voice-cmu-slt-hsmm-5.2-SNAPSHOT.jar</systemPath>
         </dependency>
@@ -157,7 +175,7 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts-lang-en</artifactId>
-            <version>5.2</version>
+            <version>${marytts.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/lib/marytts-lang-en-5.2-SNAPSHOT.jar</systemPath>
         </dependency>

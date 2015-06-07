@@ -3,18 +3,12 @@
 angular.module('mkSynthesizer.service')
   .factory('maryttsService', function ($http) {
 
-    var VOICES_ENDPOINT = '/voices';
+    var REST_BASE_URL = '/rest';
+    var VOICES_ENDPOINT = '/synthesizer/voices';
 
     var getVoices = function () {
-      return $http.get(VOICES_ENDPOINT).then(function (voices) {
-        var voicesData = voices.data.split('\n');
-        var voiceNames = [];
-        angular.forEach(voicesData, function (voiceData) {
-          if (voiceData !== '') {
-            voiceNames.push(voiceData.split(' ')[0]);
-          }
-        });
-        return voiceNames;
+      return $http.get(REST_BASE_URL + VOICES_ENDPOINT).then(function (response) {
+        return response.data;
       });
     };
 

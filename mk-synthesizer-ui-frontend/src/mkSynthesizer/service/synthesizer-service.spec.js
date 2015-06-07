@@ -29,10 +29,7 @@ describe('synthesizerService', function () {
   it('should synthesize the text and return location of the audio file', function () {
     // given
     fileLocationResponseData = '/resources/wav/recording.wav';
-    $httpBackend.expect('POST', '/rest/synthesizer/synthesize?' +
-      'inputText=input+text&' +
-      'inputType=TEXT&' +
-      'selectedVoice=selected+voice').respond(200, fileLocationResponseData);
+    $httpBackend.expect('POST', '/rest/synthesizer/synthesize').respond(200, fileLocationResponseData);
 
     // when
     synthesizerService.synthesizeText('input text', 'selected voice').then(function (data) {
