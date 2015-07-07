@@ -10,17 +10,29 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class MaryClientProcessorService {
 
   private static final String SERVER_HOST_NAME = "http://localhost:59125";
+  private static Map<String, String> localeMap = new HashMap<String, String>();
+
+  static {
+    localeMap.put("lenka-voice", "mk");
+    localeMap.put("lence_voice-hsmm", "mk");
+    localeMap.put("lence_voice", "mk");
+    localeMap.put("ds_voice", "mk");
+    localeMap.put("ds_voice-hsmm", "mk");
+    localeMap.put("cmu-slt-hsmm", "en_US");
+  }
 
   public InputStream processInput(String inputText, String InputType, String selectedVoice) {
     try {
-      return requestInputStream(inputText, InputType, "AUDIO", "en_US", "WAVE", selectedVoice, null, null, false, null);
-    } catch (IOException e) {
+      return requestInputStream(inputText, InputType, "AUDIO", localeMap.get(selectedVoice), "WAVE", selectedVoice,
+          null, null, false, null);
+    } catch (Exception e) {
       e.printStackTrace();
     }
 
