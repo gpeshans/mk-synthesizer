@@ -4,12 +4,12 @@
 
             <div class="row">
                 <h1 class="page-header">
-                    Welcome to MkSynthesizer!
+                    Добредојдовте на MkSynthesizer!
                 </h1>
             </div>
 
             <div class="row">
-                <label for="voice-dropdown">Select voice</label>
+                <label for="voice-dropdown">Изберете глас</label>
             </div>
 
             <div class="row">
@@ -18,19 +18,19 @@
                         class="input input-sm"
                         ng-required="true"
                         name="selectedVoice">
-                    <option value="">-- select voice --</option>
+                    <option value="">-- изберете --</option>
                     <option value="{{voice}}" ng-repeat="voice in voices">{{voice}}</option>
                 </select>
             </div>
 
             <div class="row">
-                <label for="input-text-field">Text to synthesize</label>
+                <label for="input-text-field">Текст за синтетизирање</label>
             </div>
             <div class="row">
                 <textarea id="input-text-field"
                           class="form-control"
                           rows="20"
-                          placeHolder="Enter text ..."
+                          placeHolder="Внесете текст ..."
                           ng-model="inputText"
                         ng-required="true">
                 </textarea>
@@ -42,7 +42,7 @@
                             class="btn btn-sm btn-speak btn-default"
                             ng-click="synthesizeText()"
                             ng-disabled="form.synthesizerForm.$invalid">
-                        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Synthesize
+                        <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Синтетизирај
                     </button>
                 </div>
                 <div class="col-sm-9">
@@ -53,7 +53,7 @@
 
             <div class="row">
                 <div class="col-sm-5">
-                    <label for="download-button">Download recording:</label>
+                    <label for="download-button">Преземи аудио снимка:</label>
                 </div>
                 <div class="col-sm-7">
                     <a class="btn btn-default"
@@ -62,7 +62,7 @@
                        target="_self"
                        ng-disabled="!file.path"
                        download="recording.wav">
-                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Преземи
                     </a>
                 </div>
             </div>
